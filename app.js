@@ -163,20 +163,23 @@ function displayPerson(person){
 }
 
 function displayFamily(person, people) {
-  var familyInfo
+  var familyInfo = "";
 
     for (let i = 0; i < people.length; i++) {
         if (person.parents.includes(people[i].id)){
             if (people[i].gender === "male"){
-                familyInfo = "Dad: " + people[i].firstName + " " + people[i].lastName + "\n";
+                familyInfo += "Dad: " + people[i].firstName + " " + people[i].lastName + "\n";
             } else if (people[i].gender === "female") {
-                familyInfo = "Mom: " + people[i].firstName + " " + people[i].lastName + "\n";
+                familyInfo += "Mom: " + people[i].firstName + " " + people[i].lastName + "\n";
             }
         }
-        if (person.parents === people[i].parents && person.id !== people[i].id){
-            if (people[i].gender === "male"){
+        if (person.parents === people[i].parents && person.id !== people[i].id) {
+            if (people[i].gender === "male") {
                 familyInfo += "Brother: " + people[i].firstName + " " + people[i].lastName + "\n";
-            } else if (people[i].gender === "female") {
+            }
+        }
+        if (person.parents === people[i].parents && person.id !== people[i].id) {
+            if (people[i].gender === "female") {
                 familyInfo += "Sister: " + people[i].firstName + " " + people[i].lastName + "\n";
             }
         }
@@ -196,17 +199,18 @@ function displayFamily(person, people) {
 
 function getDes(person, people) {
    var desInfo = "";
+   var desLog = [];
 
-        for (let i = 0; i < people.length; i++) {
+        for (let i = 0; i < people[i].length; i++) {
                 if (people[i].parents.includes(person.id)){
-                    desInfo += "Descendants: " + people[i].firstName + " " + people[i].lastName + "\n";
-                    console.log(desInfo);
+                    desLog = desLog.push(people[i]);
+                    getDes(people[i]);
                 }
-
         }
-//store in id array
+        desLog.toString();
+        console.log(desLog);
 
-    alert(desInfo);
+    alert(desLog);
 }
 
 
